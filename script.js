@@ -1,62 +1,45 @@
-// Dark Mode Toggle mit Speicherung
-const modeBtn = document.getElementById("modeBtn");
-const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-const storedTheme = localStorage.getItem("theme");
-if (storedTheme === "dark" || (!storedTheme && prefersDark)) {
-  enableDark();
-} else {
-  disableDark();
-}
-modeBtn.addEventListener("click", () => {
-  document.body.classList.contains("dark") ? disableDark() : enableDark();
+// Light/Dark Mode Toggle
+document.getElementById('theme-toggle').addEventListener('click', function (e) {
+  const body = document.body;
+  const current = body.getAttribute('data-theme') || 'default';
+  const next = current === 'default' ? 'light' : 'default';
+  body.setAttribute('data-theme', next);
+  e.target.textContent = next === 'default' ? 'Light Mode' : 'Dark Mode';
 });
-function enableDark() {
-  document.body.classList.add("dark");
-  modeBtn.textContent = "☀️";
-  localStorage.setItem("theme", "dark");
-}
-function disableDark() {
-  document.body.classList.remove("dark");
-  modeBtn.textContent = "🌙";
-  localStorage.setItem("theme", "light");
-}
 
-// Scroll‑Reveal Animation
-const revealEls = document.querySelectorAll(".reveal");
-function handleReveal() {
-  const winH = window.innerHeight;
-  revealEls.forEach(el => {
-    if (el.getBoundingClientRect().top < winH - 100) {
-      el.classList.add("visible");
+// Scroll-Animation (für Cards und Bilder)
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('show');
+      observer.unobserve(entry.target);
     }
   });
-}
-window.addEventListener("scroll", handleReveal);
-window.addEventListener("load", handleReveal);
+}, { threshold: 0.1 });
 
-// Back‑to‑Top Button
-const toTop = document.getElementById("toTop");
-window.addEventListener("scroll", () => {
-  toTop.style.display = window.scrollY > 300 ? "flex" : "none";
-});
-toTop.addEventListener("click", () => {
-  window.scrollTo({ top: 0, behavior: "smooth" });
+document.querySelectorAll('.card, .gallery .image-row img').forEach(el => {
+  observer.observe(el);
 });
 
-// Stats Counter
-window.addEventListener("load", () => {
-  document.querySelectorAll(".num").forEach(counter => {
-    const target = +counter.dataset.target;
-    const step = target / 50;
-    const update = () => {
-      const current = +counter.innerText;
-      if (current < target) {
-        counter.innerText = Math.ceil(current + step);
-        setTimeout(update, 40);
-      } else {
-        counter.innerText = target;
-      }
-    };
-    update();
+// Galerie-Modal
+const modal = document.getElementById("modal");
+const modalImg = document.getElementById("modal-img");
+const closeBtn = document.querySelector(".close");
+
+document.querySelectorAll(".gallery .image-row img").forEach(img => {
+  img.addEventListener("click", () => {
+    modal.style.display = "block";
+    modalImg.src = img.src;
+    modalImg.alt = img.alt;
   });
 });
+
+closeBtn.onclick = function () {
+  modal.style.display = "none";
+};
+
+window.onclick = function (event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+};
