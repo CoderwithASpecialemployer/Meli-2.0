@@ -1,6 +1,320 @@
-[data-theme="light"] {
-  --bg: #fff4e6;               /* heller Sandton */
-  --fg: #2b2b2b;
-  --accent: #a84444;           /* weinrot */
-  --accent-light: #f9d8d2;     /* zartes Rosa-Rot */
-}
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Änderungsschneiderei Meli – Willkommen</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #faf9f6;
+      --fg: #333;
+      --accent: #8b4513;
+      --accent-light: #d9cfc4;
+      --hero-bg: linear-gradient(135deg, #d9cfc4, #faf9f6);
+      --radius: 8px;
+      --transition: .3s ease;
+      --padding: 3rem 1rem;
+    }
+
+    [data-theme="light"] {
+      --bg: #fff4e6;
+      --fg: #2b2b2b;
+      --accent: #a84444;
+      --accent-light: #f9d8d2;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      line-height: 1.6;
+      transition: background var(--transition), color var(--transition);
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background: var(--accent-light);
+      box-shadow: 0 2px 4px rgba(0,0,0,.05);
+    }
+
+    #logo {
+      height: 50px;
+      margin-right: 1rem;
+    }
+
+    header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      color: var(--accent);
+    }
+
+    button#theme-toggle {
+      border: 2px solid var(--accent);
+      border-radius: var(--radius);
+      padding: .4rem .8rem;
+      background: none;
+      color: var(--accent);
+      cursor: pointer;
+      transition: background var(--transition), color var(--transition);
+    }
+
+    button#theme-toggle:hover {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    section {
+      padding: var(--padding);
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .hero {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 6rem 1rem;
+      background: var(--hero-bg);
+    }
+
+    .hero h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    .hero p {
+      max-width: 600px;
+      font-size: 1.2rem;
+      opacity: .85;
+      margin-bottom: 2rem;
+    }
+
+    .hero .buttons {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .hero .buttons a {
+      display: inline-block;
+      padding: .8rem 1.6rem;
+      border-radius: var(--radius);
+      text-decoration: none;
+      font-weight: 600;
+      transition: background var(--transition);
+    }
+
+    .btn-call {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .btn-call:hover {
+      background: var(--accent-light);
+      color: var(--fg);
+    }
+
+    .btn-book {
+      background: var(--accent-light);
+      color: var(--accent);
+      border: 2px solid var(--accent);
+    }
+
+    .btn-book:hover {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .services {
+      display: grid;
+      gap: 2rem;
+      margin-top: 2rem;
+      grid-template-columns: 1fr;
+    }
+
+    @media (min-width: 600px) {
+      .services {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .card {
+      background: #fff;
+      border: 1px solid var(--accent-light);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, .05);
+      transition: transform var(--transition), box-shadow var(--transition);
+      text-align: center;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .card.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .hours, .contact {
+      background: var(--accent-light);
+      border-radius: var(--radius);
+      padding: 2rem;
+      margin-top: 2rem;
+      text-align: center;
+    }
+
+    .hours h3, .contact h3 {
+      margin-bottom: 1rem;
+      color: var(--accent);
+      font-size: 1.3rem;
+    }
+
+    .hours ul {
+      list-style: none;
+      line-height: 1.8;
+    }
+
+    .image-row {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .image-row img {
+      width: 100%;
+      max-height: 400px;
+      object-fit: cover;
+      border-radius: var(--radius);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .image-row img.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      font-size: .8rem;
+      color: rgba(0, 0, 0, .3);
+      margin-top: 2rem;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+  </style>
+</head>
+<body data-theme="default">
+
+  <header>
+    <div style="display: flex; align-items: center;">
+      <img id="logo" src="meli_logo.png" alt="Logo der Änderungsschneiderei Meli">
+      <h1>Änderungsschneiderei Meli</h1>
+    </div>
+    <button id="theme-toggle">Light Mode</button>
+  </header>
+
+  <section class="hero">
+    <h2>Herzlich Willkommen</h2>
+    <p>Wir gestalten und ändern Ihre Kleidung mit handwerklicher Präzision und individuellem Stil.</p>
+    <div class="buttons">
+      <a href="#booking" class="btn-book">Termin buchen</a>
+      <a href="tel:+491775527906" class="btn-call">Jetzt anrufen</a>
+    </div>
+    <img src="https://source.unsplash.com/1200x400/?sewing-machine" alt="Nähmaschine" class="fade-img">
+  </section>
+
+  <section class="services">
+    <div class="card"> <h3>Maßanfertigung</h3> <p>Perfekt zugeschnitten auf Ihre Maße und Ihren Geschmack.</p> </div>
+    <div class="card"> <h3>Änderungen</h3> <p>Sitzoptimierung und Anpassungen für besten Tragekomfort.</p> </div>
+    <div class="card"> <h3>Reparaturen</h3> <p>Verlängern Sie die Lebensdauer Ihrer Lieblingsstücke.</p> </div>
+  </section>
+
+  <section class="image-row">
+    <img src="https://source.unsplash.com/600x400/?fabric,thread" alt="Stoffe und Garn">
+    <img src="https://source.unsplash.com/600x400/?tailoring,measuring-tape" alt="Maßband auf Schneiderbüste">
+  </section>
+
+  <section id="booking">
+    <h3>Online-Terminbuchung</h3>
+    <p>Buchen Sie Ihren Wunschtermin direkt online. Sie werden weitergeleitet zu unserem Kalender.</p>
+    <a href="https://calendly.com/deine-terminseite" class="btn-book">Jetzt Termin wählen</a>
+  </section>
+
+  <section class="hours">
+    <h3>Öffnungszeiten</h3>
+    <ul>
+      <li>Mo–Fr: 10:00 – 18:00 (Pause 13:00 – 14:00)</li>
+      <li>Sa: 10:00 – 14:00</li>
+      <li>So: geschlossen</li>
+    </ul>
+  </section>
+
+  <section class="contact">
+    <h3>Kontakt & Adresse</h3>
+    <p>Castroper Str. 11<br>45665 Recklinghausen</p>
+    <p>Telefon: <a href="tel:+491775527906" style="color: var(--accent); text-decoration: none;">+49 177 5527906</a><br>
+    E-Mail: <a href="mailto:Birgulrencber12@gmail.com" style="color: var(--accent); text-decoration: none;">Birgulrencber12@gmail.com</a></p>
+  </section>
+
+  <footer>
+    © 2025 Änderungsschneiderei Meli – Alle Rechte vorbehalten
+  </footer>
+
+  <script>
+    document.getElementById('theme-toggle').addEventListener('click', function(e) {
+      const body = document.body;
+      const next = body.getAttribute('data-theme') === 'default' ? 'light' : 'default';
+      body.setAttribute('data-theme', next);
+      e.target.textContent = next === 'default' ? 'Light Mode' : 'Dark Mode';
+    });
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.1
+    });
+
+    document.querySelectorAll('.card, .image-row img').forEach(el => {
+      observer.observe(el);
+    });
+  </script>
+
+</body>
+</html>
