@@ -17,12 +17,11 @@
       --padding: 3rem 1rem;
     }
 
-    /* optional: dark mode */
     [data-theme="light"] {
-      --bg: #fff;
-      --fg: #222;
-      --accent: #556b2f;
-      --accent-light: #e1e6dd;
+      --bg: #fffaf5;
+      --fg: #2e2e2e;
+      --accent: #a84444;
+      --accent-light: #f2dad7;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -32,6 +31,13 @@
       font-family: 'Helvetica Neue', Arial, sans-serif;
       line-height: 1.6;
       transition: background var(--transition), color var(--transition);
+    }
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
     }
     header {
       display: flex;
@@ -119,7 +125,7 @@
 
     section {
       padding: var(--padding);
-      max-width: 800px;
+      max-width: 900px;
       margin: 0 auto;
     }
 
@@ -172,6 +178,28 @@
       line-height: 1.8;
     }
 
+    .hero img,
+    .image-row img {
+      width: 100%;
+      max-height: 400px;
+      object-fit: cover;
+      border-radius: var(--radius);
+      margin-top: 2rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .image-row {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    @media (min-width: 700px) {
+      .image-row {
+        flex-direction: row;
+      }
+    }
+
     footer {
       text-align: center;
       padding: 1rem;
@@ -189,7 +217,7 @@
 
   <header>
     <div style="display: flex; align-items: center;">
-      <img id="logo" src="images/meli_logo.png" alt="Logo der Änderungsschneiderei Meli">
+      <img id="logo" src="meli_logo.png" alt="Logo der Änderungschneiderei Meli">
       <h1>Änderungschneiderei Meli</h1>
     </div>
     <button id="theme-toggle">Light Mode</button>
@@ -200,8 +228,9 @@
     <p>Wir gestalten und ändern Ihre Kleidung mit handwerklicher Präzision und individuellem Stil.</p>
     <div class="buttons">
       <a href="#booking" class="btn-book">Termin buchen</a>
-      <a href="tel:+491775527906" class="btn-call" title="Jetzt anrufen">Jetzt anrufen</a>
+      <a href="tel:+491775527906" class="btn-call">Jetzt anrufen</a>
     </div>
+    <img src="https://images.unsplash.com/photo-1610901341954-0f06ba5d6ba9?auto=format&fit=crop&w=1200&q=80" alt="Nähmaschine">
   </section>
 
   <section class="services">
@@ -217,6 +246,11 @@
       <h3>Reparaturen</h3>
       <p>Verlängern Sie die Lebensdauer Ihrer Lieblingsstücke.</p>
     </div>
+  </section>
+
+  <section class="image-row">
+    <img src="https://images.unsplash.com/photo-1609941009541-f77fe5f09c34?auto=format&fit=crop&w=1200&q=80" alt="Stoffe und Garn">
+    <img src="https://images.unsplash.com/photo-1574180045827-681f8a1a9622?auto=format&fit=crop&w=1200&q=80" alt="Maßband auf Schneiderbüste">
   </section>
 
   <section id="booking">
@@ -237,8 +271,8 @@
   <section class="contact">
     <h3>Kontakt & Adresse</h3>
     <p>Castroper Str. 11<br>45665 Recklinghausen</p>
-    <p>Telefon: <a href="tel:+491775527906">+49 177 5527906</a><br>
-    E-Mail: <a href="mailto:Birgulrencber12@gmail.com">Birgulrencber12@gmail.com</a></p>
+    <p>Telefon: <a href="tel:+491775527906" style="color: var(--accent); text-decoration: none;">+49 177 5527906</a><br>
+    E-Mail: <a href="mailto:Birgulrencber12@gmail.com" style="color: var(--accent); text-decoration: none;">Birgulrencber12@gmail.com</a></p>
   </section>
 
   <footer>
