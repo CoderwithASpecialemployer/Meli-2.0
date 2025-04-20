@@ -2,138 +2,234 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DVL Marketing – Bewirb dich jetzt</title>
-
-  <!-- Google Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
-  <script src="script.js" defer></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Änderungschneiderei Meli – Willkommen</title>
+  <style>
+    :root {
+      --bg: #faf9f6;
+      --fg: #333;
+      --accent: #8b4513;
+      --accent-light: #d9cfc4;
+      --hero-bg: linear-gradient(135deg, #d9cfc4, #faf9f6);
+      --radius: 8px;
+      --transition: .3s ease;
+      --padding: 3rem 1rem;
+    }
+    [data-theme="light"] {
+      --bg: #fff;
+      --fg: #222;
+      --accent: #556b2f;
+      --accent-light: #e1e6dd;
+    }
+    * { margin:0; padding:0; box-sizing:border-box }
+    body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      line-height:1.6;
+      transition: background var(--transition), color var(--transition);
+    }
+    header {
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:1rem 2rem;
+      background: var(--accent-light);
+      box-shadow:0 2px 4px rgba(0,0,0,.05);
+    }
+    /* Logo */
+    #logo {
+      height: 50px;
+      margin-right: 1rem;
+    }
+    header h1 {
+      font-family:'Playfair Display', serif;
+      font-size:1.8rem;
+      color: var(--accent);
+    }
+    button#theme-toggle {
+      border:2px solid var(--accent);
+      border-radius:var(--radius);
+      padding:.4rem .8rem;
+      background:none;
+      color:var(--accent);
+      cursor:pointer;
+      transition: background var(--transition), color var(--transition);
+    }
+    button#theme-toggle:hover {
+      background: var(--accent);
+      color: #fff;
+    }
+    .hero {
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+      padding:6rem 1rem;
+      background: var(--hero-bg);
+    }
+    .hero h2 {
+      font-family:'Playfair Display', serif;
+      font-size:3rem;
+      color: var(--accent);
+      margin-bottom:1rem;
+    }
+    .hero p {
+      max-width:600px;
+      font-size:1.2rem;
+      opacity:.85;
+      margin-bottom:2rem;
+    }
+    .hero .buttons {
+      display:flex;
+      gap:1rem;
+      flex-wrap:wrap;
+      justify-content:center;
+    }
+    .hero .buttons a {
+      display:inline-block;
+      padding:.8rem 1.6rem;
+      border-radius:var(--radius);
+      text-decoration:none;
+      font-weight:600;
+      transition: background var(--transition);
+    }
+    .btn-call {
+      background: var(--accent);
+      color:#fff;
+    }
+    .btn-call:hover {
+      background: var(--accent-light);
+      color: var(--fg);
+    }
+    .btn-book {
+      background: var(--accent-light);
+      color: var(--accent);
+      border:2px solid var(--accent);
+    }
+    .btn-book:hover {
+      background: var(--accent);
+      color: #fff;
+    }
+    section { padding: var(--padding); max-width:800px; margin:0 auto; }
+    .services {
+      display:grid;
+      gap:2rem;
+      margin-top:2rem;
+      grid-template-columns:1fr;
+    }
+    @media (min-width:600px) {
+      .services { grid-template-columns: repeat(3,1fr) }
+    }
+    .card {
+      background:#fff;
+      border:1px solid var(--accent-light);
+      border-radius:var(--radius);
+      padding:1.5rem;
+      box-shadow:0 2px 6px rgba(0,0,0,.05);
+      transition: transform var(--transition), box-shadow var(--transition);
+      text-align:center;
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 4px 12px rgba(0,0,0,.1);
+    }
+    .card h3 {
+      margin-bottom:.5rem;
+      color:var(--accent);
+      font-size:1.2rem;
+    }
+    .hours, .contact {
+      background: var(--accent-light);
+      border-radius:var(--radius);
+      padding:2rem;
+      margin-top:2rem;
+      text-align:center;
+    }
+    .hours h3, .contact h3 {
+      margin-bottom:1rem;
+      color: var(--accent);
+      font-size:1.3rem;
+    }
+    .hours ul { list-style:none; line-height:1.8 }
+    footer {
+      text-align:center;
+      padding:1rem;
+      font-size:.8rem;
+      color:rgba(0,0,0,.3);
+      margin-top:2rem;
+    }
+  </style>
 </head>
+<body data-theme="default">
 
-<body>
-  <!-- NAVIGATION -->
-  <nav class="nav">
-    <div class="container nav-flex">
-      <a href="#hero" class="logo">
-        <img src="logo.png" alt="DVL Marketing Logo" class="logo-img">
-      </a>
-      <ul class="nav-links">
-        <li><a href="#hero">Start</a></li>
-        <li><a href="#proof">Inside DVL</a></li>
-        <li><a href="#prozess">Prozess</a></li>
-        <li><a href="#apply">Bewerben</a></li>
-        <li><button id="modeBtn" aria-label="Farbschema umschalten">🌙</button></li>
-      </ul>
+  <header>
+    <!-- Logo links, Titel rechts -->
+    <div style="display:flex; align-items:center;">
+      <img id="logo" src="images/meli_logo.png" alt="Logo Meli">
+      <h1>Änderungschneiderei Meli</h1>
     </div>
-  </nav>
-
-  <!-- HERO (Full‑Viewport) -->
-  <header id="hero" class="hero reveal">
-    <div class="container">
-      <h1 class="mega">Dein neuer Job wartet.</h1>
-      <p class="lead">Verdiene groß. Lerne schnell. Wachse mit uns.</p>
-      <a href="#apply" class="btn-primary pulse">Bewirb dich jetzt</a>
-    </div>
+    <button id="theme-toggle">Light Mode</button>
   </header>
 
-  <!-- STATS -->
-  <section id="stats" class="section reveal">
-    <div class="container stats">
-      <div class="stat">
-        <span class="num" data-target="120">0</span>
-        <p>Neukunden / Monat</p>
-      </div>
-      <div class="stat">
-        <span class="num" data-target="98">0</span>
-        <p>% Zufriedenheit</p>
-      </div>
-      <div class="stat">
-        <span class="num" data-target="14">0</span>
-        <p>Standorte</p>
-      </div>
+  <section class="hero">
+    <h2>Herzlich Willkommen</h2>
+    <p>Wir gestalten und ändern Ihre Kleidung mit handwerklicher Präzision und individuellem Stil.</p>
+    <div class="buttons">
+      <a href="#booking" class="btn-book">Termin buchen</a>
+      <a href="tel:+491234567890" class="btn-call">Jetzt anrufen</a>
     </div>
   </section>
 
-  <!-- INSIDE DVL -->
-  <section id="proof" class="section alt reveal">
-    <div class="container">
-      <h2 class="section-title">Inside DVL</h2>
-      <div class="cards">
-        <article class="card">
-          <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=600&q=60"
-               alt="Jennifer – Team Lead">
-          <blockquote>„Hier lernst du Vertrieb, der wirklich Spaß macht.“</blockquote>
-          <p class="cite">— Jennifer, Team Lead</p>
-        </article>
-        <article class="card">
-          <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=600&q=60"
-               alt="Lea – Recruiting">
-          <blockquote>„Jede Woche neue Challenges – kein Tag ist gleich.“</blockquote>
-          <p class="cite">— Lea, Recruiterin</p>
-        </article>
-        <article class="card">
-          <img src="img/maxi-trainee.jpg" alt="Max – Trainee">
-          <blockquote>„Gemeinsam wachsen wir schneller als allein.“</blockquote>
-          <p class="cite">— Max, Trainee</p>
-        </article>
-      </div>
+  <section class="services">
+    <div class="card">
+      <h3>Maßanfertigung</h3>
+      <p>Perfekt zugeschnitten auf Ihre Maße und Ihren Geschmack.</p>
+    </div>
+    <div class="card">
+      <h3>Änderungen</h3>
+      <p>Sitzoptimierung und Anpassungen für besten Tragekomfort.</p>
+    </div>
+    <div class="card">
+      <h3>Reparaturen</h3>
+      <p>Verlängern Sie die Lebensdauer Ihrer Lieblingsstücke.</p>
     </div>
   </section>
 
-  <!-- PROZESS -->
-  <section id="prozess" class="section dark reveal">
-    <div class="container">
-      <h2 class="section-title">Recruiting‑Prozess</h2>
-      <ol class="timeline">
-        <li><strong>1‑Minute‑Bewerbung:</strong> Formular ausfüllen, absenden – done.</li>
-        <li><strong>WhatsApp‑Call (24 h):</strong> Kurz‑Check & Termin vereinbaren.</li>
-        <li><strong>Online‑Interview (30 min):</strong> Deine Ziele, unser Job.</li>
-        <li><strong>Schnupper‑Tag:</strong> Einen halben Tag live dabei sein.</li>
-        <li><strong>Vertrag & Onboarding:</strong> Digital unterschreiben und loslegen.</li>
-      </ol>
-    </div>
+  <section id="booking">
+    <h3>Online-Terminbuchung</h3>
+    <p>Buchen Sie Ihren Wunschtermin direkt online. Sie werden weitergeleitet zu unserem Kalender.</p>
+    <a href="https://calendly.com/deine-terminseite" class="btn-book">Jetzt Termin wählen</a>
   </section>
 
-  <!-- BENEFITS -->
-  <section class="section dark reveal">
-    <div class="container benefits">
-      <h2 class="section-title">Was dich erwartet</h2>
-      <div class="benefit-grid">
-        <div><h3>💸 Top‑Verdienst</h3><p>Fixum + Boni, die sich lohnen.</p></div>
-        <div><h3>🚀 Karriere</h3><p>Vom Rookie zum Teamleiter in Monaten.</p></div>
-        <div><h3>🎯 Coaching</h3><p>Daily Feedback & persönliches Mentoring.</p></div>
-      </div>
-    </div>
+  <section class="hours">
+    <h3>Öffnungszeiten</h3>
+    <ul>
+      <li>Mo–Fr: 10:00 – 18:00 (Pause 13:00 – 14:00)</li>
+      <li>Sa: 10:00 – 14:00</li>
+      <li>So: geschlossen</li>
+    </ul>
   </section>
 
-  <!-- BEWERBUNG -->
-  <section id="apply" class="section reveal">
-    <div class="container">
-      <h2 class="section-title">1‑Minute‑Bewerbung</h2>
-      <form class="apply-form"
-            action="https://formspree.io/f/mjkyndby"
-            method="POST">
-        <input type="text"   name="name"  placeholder="Vor‑ & Nachname*" required>
-        <input type="tel"    name="phone" placeholder="Handy*"           required>
-        <input type="email"  name="email" placeholder="E‑Mail*"          required>
-        <input type="hidden" name="_subject" value="Neue Bewerbung von {name}">
-        <input type="hidden" name="_next"    value="danke.html">
-        <button type="submit" class="btn-primary full">Abschicken →</button>
-        <small>Pflichtfelder *</small>
-      </form>
-      <p class="hint">Kein Lebenslauf nötig – wir melden uns innerhalb von 24 h.</p>
-    </div>
+  <section class="contact">
+    <h3>Kontakt &amp; Adresse</h3>
+    <p>Castroper Str. 11<br />45665 Recklinghausen</p>
+    <p>Telefon: +49 123 4567890<br />E‑Mail: info@aenderungschneiderei-meli.de</p>
   </section>
 
-  <!-- FOOTER -->
   <footer>
-    <div class="container">
-      © 2025 DVL Marketing · Alle Rechte vorbehalten
-    </div>
+    © 2025 Änderungschneiderei Meli – Alle Rechte vorbehalten
   </footer>
 
-  <!-- Back‑to‑Top -->
-  <button id="toTop" aria-label="Nach oben">⇡</button>
+  <script>
+    document.getElementById('theme-toggle').addEventListener('click', function(e) {
+      const body = document.body;
+      const next = body.getAttribute('data-theme') === 'default' ? 'light' : 'default';
+      body.setAttribute('data-theme', next);
+      e.target.textContent = next==='default' ? 'Light Mode' : 'Dark Mode';
+    });
+  </script>
+
 </body>
 </html>
