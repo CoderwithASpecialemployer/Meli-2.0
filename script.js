@@ -1,4 +1,4 @@
-// Light/Dark Mode Toggle
+// Dark Mode Toggle
 document.getElementById('theme-toggle').addEventListener('click', function (e) {
   const body = document.body;
   const current = body.getAttribute('data-theme') || 'default';
@@ -7,7 +7,7 @@ document.getElementById('theme-toggle').addEventListener('click', function (e) {
   e.target.textContent = next === 'default' ? 'Light Mode' : 'Dark Mode';
 });
 
-// Scroll-Animation (für Cards und Bilder)
+// Scroll-Fade-In Animation
 const observer = new IntersectionObserver(entries => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
@@ -34,12 +34,12 @@ document.querySelectorAll(".gallery .image-row img").forEach(img => {
   });
 });
 
-closeBtn.onclick = function () {
-  modal.style.display = "none";
+closeBtn.onclick = () => modal.style.display = "none";
+
+window.onclick = e => {
+  if (e.target === modal) modal.style.display = "none";
 };
 
-window.onclick = function (event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-};
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") modal.style.display = "none";
+});
