@@ -5,8 +5,15 @@
   --accent-light: #f9d8d2;
   --radius: 8px;
   --transition: 0.3s ease;
-  --max-width: 960px;
-} 
+  --max-width: 1200px;
+}
+
+[data-theme="default"] {
+  --bg: #1e1e1e;
+  --fg: #f5f5f5;
+  --accent: #e67e7e;
+  --accent-light: #333;
+}
 
 body {
   margin: 0;
@@ -16,16 +23,17 @@ body {
   line-height: 1.6;
   transition: background var(--transition), color var(--transition);
   opacity: 0;
-  animation: fadeInBody 1s ease forwards;
+  animation: fadeIn 1s ease forwards;
 }
 
-@keyframes fadeInBody {
+@keyframes fadeIn {
   to { opacity: 1; }
 }
 
 .page-wrapper {
   max-width: var(--max-width);
   margin: 0 auto;
+  padding: 0 1rem;
 }
 
 h1, h2, h3, h4 {
@@ -57,9 +65,10 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.5rem 1rem;
+  padding: 1.5rem 0;
   background: var(--accent-light);
   border-bottom: 1px solid #ddd;
+  flex-wrap: wrap;
 }
 .header-left {
   display: flex;
@@ -83,11 +92,11 @@ button#theme-toggle:hover {
 }
 
 .hero {
-  padding: 4rem 1rem;
-  background: linear-gradient(135deg, #f9d8d2, #fffaf5);
+  padding: 4rem 0;
+  background: linear-gradient(135deg, var(--accent-light), #fffaf5);
 }
 .hero-content {
-  max-width: 600px;
+  max-width: 700px;
 }
 .hero img {
   width: 100%;
@@ -100,6 +109,7 @@ button#theme-toggle:hover {
   margin-top: 1.5rem;
   display: flex;
   gap: 1rem;
+  flex-wrap: wrap;
 }
 .btn-call, .btn-book {
   padding: 0.8rem 1.6rem;
@@ -138,6 +148,7 @@ button#theme-toggle:hover {
 }
 .card {
   background: #fff;
+  color: #111;
   padding: 1.5rem;
   border: 1px solid var(--accent-light);
   border-radius: var(--radius);
@@ -178,7 +189,6 @@ button#theme-toggle:hover {
   padding: 2rem;
   margin-top: 3rem;
   border-radius: var(--radius);
-  text-align: left;
 }
 .hours ul {
   list-style: none;
@@ -196,7 +206,7 @@ footer {
   margin-top: 4rem;
 }
 
-/* Modal */
+/* Modal Galerie */
 .modal {
   display: none;
   position: fixed;
