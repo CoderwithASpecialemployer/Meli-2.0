@@ -37,8 +37,7 @@
       background: var(--accent-light);
       box-shadow:0 2px 4px rgba(0,0,0,.05);
     }
-    /* Logo */
-    #logo {<img id="meli_logo.png" …>-
+    #logo {
       height: 50px;
       margin-right: 1rem;
     }
@@ -165,15 +164,12 @@
 <body data-theme="default">
 
   <header>
-  <!-- Logo links, Titel rechts -->
-  <div style="display:flex; align-items:center;">
-    <!-- Hier dein Logo einfügen: -->
-    <img id="logo" src="images/meli_logo.png" alt="Logo Meli">
-    <!-- Danach kommt der Seitentitel -->
-    <h1>Änderungschneiderei Meli</h1>
-  </div>
-  <button id="theme-toggle">Light Mode</button>
-</header>
+    <div style="display:flex; align-items:center;">
+      <img id="logo" src="images/meli_logo.png" alt="Logo Meli">
+      <h1>Änderungschneiderei Meli</h1>
+    </div>
+    <button id="theme-toggle">Light Mode</button>
+  </header>
 
   <section class="hero">
     <h2>Herzlich Willkommen</h2>
@@ -215,13 +211,13 @@
   </section>
 
   <section class="contact">
-    <h3>Kontakt &amp; Adresse</h3>
+    <h3>Kontakt & Adresse</h3>
     <p>Castroper Str. 11<br />45665 Recklinghausen</p>
     <p>Telefon: +491775537906<br />E‑Mail: Birgulrencber12@gmail.com</p>
   </section>
 
   <footer>
-    © 2025 Änderungschneiderei Meli – Alle Rechte vorbehalten
+    © 2025 Änderungschneiderei Meli – Alle Rechte vorbehalten
   </footer>
 
   <script>
@@ -229,7 +225,7 @@
       const body = document.body;
       const next = body.getAttribute('data-theme') === 'default' ? 'light' : 'default';
       body.setAttribute('data-theme', next);
-      e.target.textContent = next==='default' ? 'Light Mode' : 'Dark Mode';
+      e.target.textContent = next === 'default' ? 'Light Mode' : 'Dark Mode';
     });
   </script>
 
